@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class SubscriberGenerator {
+public class SubscriberModel {
 
     private Subscriber[] subscriberArr;
 
@@ -20,8 +20,8 @@ public class SubscriberGenerator {
         this.subscriberArr = subscriberArr;
     }
 
-    SubscriberGenerator(int numberToGenerate) {
-        generateSubscribers(numberToGenerate);
+    SubscriberModel() {
+
     }
 
     private Subscriber generateSubscriber() {
@@ -39,10 +39,10 @@ public class SubscriberGenerator {
     public void generateSubscribers(int numberToGenerate) {
         subscriberArr = new Subscriber[numberToGenerate];
 
-        for (int i=0; i<subscriberArr.length;i++) {
+        for (int i = 0; i < subscriberArr.length; i++) {
 
             do {
-                subscriberArr[i]= generateSubscriber();
+                subscriberArr[i] = generateSubscriber();
             } while (hasSameSubscriber(subscriberArr[i]));
 
 
@@ -54,36 +54,33 @@ public class SubscriberGenerator {
 
         for (Subscriber tmp : subscriberArr) {
 
-            if (tmp == subscriber || tmp == null) {
-
-                continue;
-            }
-
+            if (tmp == subscriber || tmp == null) continue;
             if (tmp.equals(subscriber)) return true;
+
         }
 
         return false;
     }
 
-   Object[] getSubscribersByInnerCitySpeakingTime(int innerCitySpeakingTime) {
+    Object[] getSubscribersByInnerCitySpeakingTime(int innerCitySpeakingTime) {
         ArrayList<Subscriber> subscribersList = new ArrayList<Subscriber>();
 
-        for (Subscriber tmp : subscriberArr) {
+        for (Subscriber tmp : subscriberArr)
             if (tmp.getInnerCitySpeakingTime() > innerCitySpeakingTime) subscribersList.add(tmp);
-        }
 
-        return  subscribersList.toArray();
+
+        return subscribersList.toArray();
 
     }
 
     Object[] getSubscribersUsedOuterCityCommunication() {
         ArrayList<Subscriber> subscribersList = new ArrayList<>();
 
-        for (Subscriber tmp : subscriberArr) {
+        for (Subscriber tmp : subscriberArr)
             if (tmp.getOuterCitySpeakingTime() > 0) subscribersList.add(tmp);
-        }
 
-        return  subscribersList.toArray();
+
+        return subscribersList.toArray();
     }
 
 
