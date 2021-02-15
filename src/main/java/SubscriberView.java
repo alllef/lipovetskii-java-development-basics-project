@@ -23,12 +23,31 @@ public class SubscriberView {
             return;
         }
 
-
-
         for (Object tmp : subscribers) subscribersString += tmp.toString() + "\n";
 
         println(subscribersString);
     }
 
+    private static int getMaxStringLengthInArr(Object[] arr) {
+        int length = 0;
 
+        for (Object object : arr)
+            if (object.toString().length() > length) length = object.toString().length();
+
+        return length;
+    }
+
+    private static String getStringCopy(String string, int copyNumber){
+        StringBuilder copyString= new StringBuilder(" ");
+
+        copyString.append(String.valueOf(string).repeat(Math.max(0, copyNumber)));
+
+
+        return copyString.toString();
+    }
+
+    public static String getSpaceToAlign(Object str,Object[]arr){
+        int numberOfSpaces = getMaxStringLengthInArr(arr)-str.toString().length();
+        return getStringCopy(" ",numberOfSpaces);
+    }
 }

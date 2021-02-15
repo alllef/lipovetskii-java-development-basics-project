@@ -1,16 +1,15 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class SubscriberModel {
 
     private Subscriber[] subscriberArr;
 
-    private String nameArr[] = new String[]{"Peter", "Steven", "Michael", "George", "Alexandr", "Dmitriy", "David"};
-    private String surnameArr[] = new String[]{"King", "Jackson", "Ivanov", "Petrov", "Kozlov", "Shevchenko"};
-    private String fatherNameArr[] = new String[]{"Vitaliovich", "Anatoliovich", "Petrovich", "Markovich", "Genadiovich"};
-    private String addressArr[] = new String[]{"Cheluskintsev str.", "5th Avenue", "Baker str.", "Khreschatyk"};
-    private int innerCitySpeakingTimeArr[] = new int[]{5, 250, 1500, 780, 0};
-    private int outerCitySpeakingTimeArr[] = new int[]{456, 967, 648, 1564, 26, 8};
+    public static final String NAME_ARR[] = new String[]{"Peter", "Steven", "Michael", "George", "Alexandr", "Dmitriy", "David"};
+    public static final String SURNAME_ARR[] = new String[]{"King", "Jackson", "Ivanov", "Petrov", "Kozlov", "Shevchenko"};
+    public static final String FATHER_NAME_ARR[] = new String[]{"Vitaliovich", "Anatoliovich", "Petrovich", "Markovich", "Genadiovich"};
+    public static final String ADDRESS_ARR[] = new String[]{"Cheluskintsev str.", "5th Avenue", "Baker str.", "Khreschatyk"};
+    public static final Integer INNER_CITY_SPEAKING_TIME_ARR[] = new Integer[]{5, 250, 1500, 780, 0};
+    public static final Integer OUTER_CITY_SPEAKING_TIME_ARR[] = new Integer[]{456, 967, 648, 1564, 26, 8};
 
     public Subscriber[] getSubscriberArr() {
         return subscriberArr;
@@ -26,12 +25,13 @@ public class SubscriberModel {
 
     private Subscriber generateSubscriber() {
 
-        String name = nameArr[(int) (Math.random() * nameArr.length)];
-        String surname = surnameArr[(int) (Math.random() * surnameArr.length)];
-        String fatherName = fatherNameArr[(int) (Math.random() * fatherNameArr.length)];
-        String address = addressArr[(int) (Math.random() * addressArr.length)];
-        int innerCitySpeakingTime = innerCitySpeakingTimeArr[(int) (Math.random() * innerCitySpeakingTimeArr.length)];
-        int outerCitySpeakingTime = outerCitySpeakingTimeArr[(int) (Math.random() * outerCitySpeakingTimeArr.length)];
+        String name = NAME_ARR[(int) (Math.random() * NAME_ARR.length)];
+        String surname = SURNAME_ARR[(int) (Math.random() * SURNAME_ARR.length)];
+        String fatherName = FATHER_NAME_ARR[(int) (Math.random() * FATHER_NAME_ARR.length)];
+        String address = ADDRESS_ARR[(int) (Math.random() * ADDRESS_ARR.length)];
+        int innerCitySpeakingTime = INNER_CITY_SPEAKING_TIME_ARR[(int) (Math.random() * INNER_CITY_SPEAKING_TIME_ARR.length)];
+        int outerCitySpeakingTime = OUTER_CITY_SPEAKING_TIME_ARR[(int) (Math.random() * OUTER_CITY_SPEAKING_TIME_ARR.length)];
+
         return new Subscriber(name, surname, fatherName, address, innerCitySpeakingTime, outerCitySpeakingTime);
 
     }
@@ -63,25 +63,34 @@ public class SubscriberModel {
     }
 
     Object[] getSubscribersByInnerCitySpeakingTime(int innerCitySpeakingTime) {
-        ArrayList<Subscriber> subscribersList = new ArrayList<Subscriber>();
+        Subscriber[] tmpArr = new Subscriber[0];
 
-        for (Subscriber tmp : subscriberArr)
-            if (tmp.getInnerCitySpeakingTime() > innerCitySpeakingTime) subscribersList.add(tmp);
+        for (Subscriber tmp : subscriberArr) {
 
+            if (tmp.getInnerCitySpeakingTime() > innerCitySpeakingTime) {
+                tmpArr = Arrays.copyOf(tmpArr, tmpArr.length + 1);
+                tmpArr[tmpArr.length - 1] = tmp;
+            }
+        }
 
-        return subscribersList.toArray();
+        return tmpArr;
 
     }
 
     Object[] getSubscribersUsedOuterCityCommunication() {
-        ArrayList<Subscriber> subscribersList = new ArrayList<>();
+        Subscriber[] tmpArr = new Subscriber[0];
 
-        for (Subscriber tmp : subscriberArr)
-            if (tmp.getOuterCitySpeakingTime() > 0) subscribersList.add(tmp);
+        for (Subscriber tmp : subscriberArr) {
 
+            if (tmp.getOuterCitySpeakingTime() > 0) {
+                tmpArr = Arrays.copyOf(tmpArr, tmpArr.length + 1);
+                tmpArr[tmpArr.length - 1] = tmp;
+            }
 
-        return subscribersList.toArray();
+        }
+        return tmpArr;
     }
+
 
 
 }
