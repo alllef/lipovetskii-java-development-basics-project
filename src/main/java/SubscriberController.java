@@ -8,24 +8,41 @@ public class SubscriberController {
     public void start() {
 
         boolean isToContinue;
+        String input;
 
         view.println(SubscriberView.STARTER_OUTPUT);
-        model.generateSubscribers(InputReader.getInput());
+
+        do {
+            input = InputReader.getInput();
+        } while (!InputValidator.validate(input));
+
+        model.generateSubscribers(Integer.parseInt(input));
         view.printSubscriberArr(model.getSubscriberArr());
 
         do {
             view.println(SubscriberView.MENU_OUTPUT);
-            isToContinue = makeDecision(InputReader.getInput());
+
+            do {
+                input = InputReader.getInput();
+            } while (!InputValidator.validate(input));
+
+            isToContinue = makeDecision(Integer.parseInt(input));
         } while (isToContinue);
 
     }
 
-   private boolean makeDecision(int decision) {
+    private boolean makeDecision(int decision) {
 
         switch (decision) {
 
             case 1:
-                view.printSubscriberArr(model.getSubscribersByInnerCitySpeakingTime(InputReader.getInput()));
+                String input;
+
+                do {
+                    input = InputReader.getInput();
+                } while (!InputValidator.validate(input));
+
+                view.printSubscriberArr(model.getSubscribersByInnerCitySpeakingTime(Integer.parseInt(input)));
                 break;
 
             case 2:

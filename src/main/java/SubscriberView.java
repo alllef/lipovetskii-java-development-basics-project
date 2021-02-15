@@ -16,16 +16,16 @@ public class SubscriberView {
 
     void printSubscriberArr(Object[] subscribers) {
 
-        String subscribersString = "";
+        StringBuilder subscribersString = new StringBuilder();
 
         if (subscribers.length == 0) {
             println("There is now data by this criteria");
             return;
         }
 
-        for (Object tmp : subscribers) subscribersString += tmp.toString() + "\n";
+        for (Object tmp : subscribers) subscribersString.append(tmp.toString()).append("\n");
 
-        println(subscribersString);
+        println(subscribersString.toString());
     }
 
     private static int getMaxStringLengthInArr(Object[] arr) {

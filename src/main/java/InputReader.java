@@ -4,7 +4,7 @@ public class InputReader {
 
     static Scanner scanner = new Scanner(System.in);
 
-    static int getInput() {
-        return scanner.nextInt();
+    static String getInput() {
+        return scanner.nextLine();
     }
 }
