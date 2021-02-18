@@ -1,8 +1,12 @@
+package controller;
 
+import model.SubscriberModel;
+import validation.InputValidator;
+import view.SubscriberView;
 
 public class SubscriberController {
 
-    private SubscriberModel model = new SubscriberModel();
+    private SubscriberModel model = new SubscriberModel(15);
     private SubscriberView view = new SubscriberView();
 
     public void start() {
@@ -11,12 +15,6 @@ public class SubscriberController {
         String input;
 
         view.println(SubscriberView.STARTER_OUTPUT);
-
-        do {
-            input = InputReader.getInput();
-        } while (!InputValidator.validate(input));
-
-        model.generateSubscribers(Integer.parseInt(input));
         view.printSubscriberArr(model.getSubscriberArr());
 
         do {
@@ -24,7 +22,7 @@ public class SubscriberController {
 
             do {
                 input = InputReader.getInput();
-            } while (!InputValidator.validate(input));
+            } while (!InputValidator.validate(input,1,3));
 
             isToContinue = makeDecision(Integer.parseInt(input));
         } while (isToContinue);
@@ -40,7 +38,7 @@ public class SubscriberController {
 
                 do {
                     input = InputReader.getInput();
-                } while (!InputValidator.validate(input));
+                } while (!InputValidator.validate(input,0,Integer.MAX_VALUE));
 
                 view.printSubscriberArr(model.getSubscribersByInnerCitySpeakingTime(Integer.parseInt(input)));
                 break;

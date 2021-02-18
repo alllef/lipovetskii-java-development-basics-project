@@ -1,3 +1,8 @@
+package entity;
+
+import model.SubscriberModel;
+import view.SubscriberView;
+
 public class Subscriber {
 
     private String name;
@@ -66,15 +71,15 @@ public class Subscriber {
 
     @Override
     public String toString() {
-        return "Subscriber{" + "name='" + name + '\'' + SubscriberView.getSpaceToAlign(name,SubscriberModel.NAME_ARR)+
-                 "surname='" + surname + '\'' + SubscriberView.getSpaceToAlign(surname,SubscriberModel.SURNAME_ARR)+
-                "fatherName='" + fatherName + '\'' + SubscriberView.getSpaceToAlign(fatherName,SubscriberModel.FATHER_NAME_ARR)+
-                "address='" + address + '\'' + SubscriberView.getSpaceToAlign(address,SubscriberModel.ADDRESS_ARR)+
-                "innerCitySpeakingTime=" + innerCitySpeakingTime + SubscriberView.getSpaceToAlign(innerCitySpeakingTime, SubscriberModel.INNER_CITY_SPEAKING_TIME_ARR)+
-                "outerCitySpeakingTime=" + outerCitySpeakingTime + SubscriberView.getSpaceToAlign(outerCitySpeakingTime,SubscriberModel.OUTER_CITY_SPEAKING_TIME_ARR)+
+        return "Subscriber{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", fatherName='" + fatherName + '\'' +
+                ", address='" + address + '\'' +
+                ", innerCitySpeakingTime=" + innerCitySpeakingTime +
+                ", outerCitySpeakingTime=" + outerCitySpeakingTime +
                 '}';
     }
-
 
     @Override
     public boolean equals(Object object) {

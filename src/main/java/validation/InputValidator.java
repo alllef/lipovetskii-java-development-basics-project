@@ -1,3 +1,9 @@
+package validation;
+
+import validation.NotIntegerException;
+import validation.NotPositiveNumberException;
+import validation.OutOfRangeException;
+
 public class InputValidator {
 
 
@@ -18,7 +24,7 @@ public class InputValidator {
         if (number < leftBound || number > rightBound) throw new OutOfRangeException();
     }
 
-    public static boolean validate(String input) {
+    public static boolean validate(String input,int leftBound,int rightBound) {
 
         boolean isValidated = false;
         int inputNumber;
@@ -28,7 +34,7 @@ public class InputValidator {
             inputNumber = Integer.parseInt(input);
 
             checkIsNotPositive(inputNumber);
-            isInRange(inputNumber, 1, 30);
+            isInRange(inputNumber, leftBound, rightBound);
 
             isValidated = true;
         } catch (NotIntegerException e) {
