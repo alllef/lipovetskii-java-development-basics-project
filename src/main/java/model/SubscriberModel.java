@@ -27,7 +27,7 @@ public class SubscriberModel {
 
 
 
-    public Object[] getSubscribersByInnerCitySpeakingTime(int innerCitySpeakingTime) {
+    public Subscriber[] getSubscribersByInnerCitySpeakingTime(int innerCitySpeakingTime) {
         Subscriber[] tmpArr = new Subscriber[0];
 
         for (Subscriber tmp : subscriberArr) {
@@ -42,7 +42,7 @@ public class SubscriberModel {
 
     }
 
-    public Object[] getSubscribersUsedOuterCityCommunication() {
+    public Subscriber[] getSubscribersUsedOuterCityCommunication() {
         Subscriber[] tmpArr = new Subscriber[0];
 
         for (Subscriber tmp : subscriberArr) {

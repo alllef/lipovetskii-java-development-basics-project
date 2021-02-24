@@ -1,6 +1,8 @@
 package entity;
 
-public class SubscriberGenerator {
+
+
+public class SubscriberGenerator  {
     public static final String NAME_ARR[] = new String[]{"Peter", "Steven", "Michael", "George", "Alexandr", "Dmitriy", "David"};
     public static final String SURNAME_ARR[] = new String[]{"King", "Jackson", "Ivanov", "Petrov", "Kozlov", "Shevchenko"};
     public static final String FATHER_NAME_ARR[] = new String[]{"Vitaliovich", "Anatoliovich", "Petrovich", "Markovich", "Genadiovich"};

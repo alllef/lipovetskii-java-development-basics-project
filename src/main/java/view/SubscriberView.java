@@ -11,6 +11,11 @@ public class SubscriberView {
             Enter 1, if you want to know subscribers, that spoken more minutes in inner city lines, than entered by you number
             Enter 2, if you want to know subscribers, that used outer city lines
             Enter 3, if you want to exit""";
+    public static final String SAVE_MENU_OUTPUT = """
+            Do you want to save this information?
+            Enter "yes", if you want
+            Enter other characters, if you do not want
+            """;
 
 
    public void println(String output) {

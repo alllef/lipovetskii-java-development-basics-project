@@ -3,7 +3,9 @@ package entity;
 import model.SubscriberModel;
 import view.SubscriberView;
 
-public class Subscriber {
+import java.io.Serializable;
+
+public class Subscriber implements Serializable {
 
     private String name;
     private String surname;
