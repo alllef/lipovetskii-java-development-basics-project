@@ -14,8 +14,7 @@ public class SubscriberView {
     public static final String SAVE_MENU_OUTPUT = """
             Do you want to save this information?
             Enter "yes", if you want
-            Enter other characters, if you do not want
-            """;
+            Enter other characters, if you do not want""";
 
 
    public void println(String output) {

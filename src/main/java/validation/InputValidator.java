@@ -1,9 +1,5 @@
 package validation;
 
-import validation.NotIntegerException;
-import validation.NotPositiveNumberException;
-import validation.OutOfRangeException;
-
 public class InputValidator {
 
 
@@ -11,38 +7,24 @@ public class InputValidator {
         if (input < 0) throw new NotPositiveNumberException();
     }
 
-    private static void checkIsInteger(String input) throws NotIntegerException {
-
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new NotIntegerException();
-        }
-    }
-
     private static void isInRange(int number, int leftBound, int rightBound) throws OutOfRangeException {
         if (number < leftBound || number > rightBound) throw new OutOfRangeException();
     }
 
-    public static boolean validate(String input,int leftBound,int rightBound) {
+    public static int validate(int input, int leftBound, int rightBound) {
 
-        boolean isValidated = false;
-        int inputNumber;
+        int isValidated = 3;
+
 
         try {
-            checkIsInteger(input);
-            inputNumber = Integer.parseInt(input);
-
-            checkIsNotPositive(inputNumber);
-            isInRange(inputNumber, leftBound, rightBound);
-
-            isValidated = true;
-        } catch (NotIntegerException e) {
-            System.out.println("It is not number of integer type. Please, write integer number");
+            checkIsNotPositive(input);
+            isInRange(input, leftBound, rightBound);
         } catch (NotPositiveNumberException e) {
-            System.out.println("This is not positive type number. Please, write positive number");
+            isValidated = 1;
+            //System.out.println("This is not positive type number. Please, write positive number");
         } catch (OutOfRangeException e) {
-            System.out.println("This number is out of range. Write number in range from that to that");
+            isValidated = 2;
+            //System.out.println("This number is out of range. Write number in range");
         }
 
 

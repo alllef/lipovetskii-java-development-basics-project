@@ -4,28 +4,26 @@ import entity.Subscriber;
 import model.SubscriberModel;
 import validation.InputValidator;
 import view.SubscriberView;
-import warehouse.WareHouseSerializer;
-import warehouse.WareHouseStringSaver;
+import warehouse.DataFiles;
+import warehouse.JSONParser;
 
 public class SubscriberController {
 
     private SubscriberModel model = new SubscriberModel(15);
     private SubscriberView view = new SubscriberView();
-    private WareHouseSerializer<Subscriber[]> serializer = new WareHouseSerializer<>("SerializedObjects.ser");
-    private WareHouseStringSaver stringSaver = new WareHouseStringSaver();
+    private JSONParser parser = new JSONParser();
 
-   public SubscriberController(){
+    public SubscriberController() {
         start();
     }
 
     public void start() {
 
-        Subscriber[] tmp = serializer.deserialize();
-
-        if (tmp != null) model.setSubscriberArr(tmp);
+        Subscriber[] tmp = parser.loadSubscribers(DataFiles.BASIC_DATA_FILE);
+        if (tmp.length > 0) model.setSubscriberArr(tmp);
 
         boolean isToContinue;
-        String input;
+        int input;
 
         view.println(SubscriberView.STARTER_OUTPUT);
         view.printSubscriberArr(model.getSubscriberArr());
@@ -34,13 +32,13 @@ public class SubscriberController {
             view.println(SubscriberView.MENU_OUTPUT);
 
             do {
-                input = InputReader.getInput();
-            } while (!InputValidator.validate(input, 1, 3));
+                input = InputReader.getIntegerInput();
+            } while (InputValidator.validate(input, 1, 3)==Integer.MAX_VALUE);
 
-            isToContinue = makeDecision(Integer.parseInt(input));
+            isToContinue = makeDecision(input);
         } while (isToContinue);
 
-        serializer.serialize(model.getSubscriberArr());
+        parser.saveSubscribers(DataFiles.BASIC_DATA_FILE, model.getSubscriberArr());
     }
 
     private boolean makeDecision(int decision) {
@@ -48,13 +46,13 @@ public class SubscriberController {
         switch (decision) {
 
             case 1:
-                String input;
+                int input;
 
                 do {
-                    input = InputReader.getInput();
-                } while (!InputValidator.validate(input, 0, Integer.MAX_VALUE));
+                    input = InputReader.getIntegerInput();
+                } while (InputValidator.validate(input, 0, Integer.MAX_VALUE)==Integer.MAX_VALUE);
 
-                printAndSaveArr(model.getSubscribersByInnerCitySpeakingTime(Integer.parseInt(input)));
+                printAndSaveArr(model.getSubscribersByInnerCitySpeakingTime(input));
                 break;
 
             case 2:
@@ -72,14 +70,34 @@ public class SubscriberController {
         return true;
     }
 
-    private void printAndSaveArr(Subscriber[]arr){
+    private void printAndSaveArr(Subscriber[] arr) {
 
         view.printSubscriberArr(arr);
-        view.println(SubscriberView.SAVE_MENU_OUTPUT);
 
-        String inputResult = InputReader.getInput();
-        if (inputResult.equals("yes")) stringSaver.saveStringSubscribers(arr,"test");
+        if (arr.length > 0) {
+            view.println(SubscriberView.SAVE_MENU_OUTPUT);
+
+            String inputResult = InputReader.getStringInput();
+            if (inputResult.equals("yes")) parser.saveSubscribers(DataFiles.TEMPORARY_DATA_FILE, arr);
+        }
 
     }
 
+    private boolean printValidationResult(int validation) {
+        boolean validationResult = false;
+        switch (validation) {
+            case 1:
+                view.println("This is not positive type number. Please, write positive number");
+                break;
+            case 2:
+                view.println("This number is out of range. Write number in range");
+                break;
+            case 3:
+                validationResult = true;
+                break;
+            default:
+                break;
+        }
+        return validationResult;
+    }
 }
