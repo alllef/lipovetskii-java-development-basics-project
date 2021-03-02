@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO" name="baeldung" packages="">
+    <Appenders>
+
+        <Console name="InfoLevel" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %p %m%n"/>
+        </Console>
+
+        <Console name="ErrorLevel" target="SYSTEM_ERR">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %p %m%n"/>
+        </Console>
+
+    </Appenders>
+
+    <Loggers>
+
+        <Root level="info">
+            <AppenderRef ref="InfoLevel"/>
+            <AppenderRef ref="ErrorLevel"/>
+        </Root>
+
+    </Loggers>
+
+</Configuration>
+
+

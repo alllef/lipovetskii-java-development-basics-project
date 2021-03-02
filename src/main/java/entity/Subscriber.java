@@ -23,6 +23,8 @@ public class Subscriber implements Serializable {
         this.outerCitySpeakingTime = outerCitySpeakingTime;
     }
 
+    Subscriber(){}
+
     public String getName() {
         return name;
     }

@@ -1,6 +1,10 @@
 package validation;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class InputValidator {
+
 
 
     private static void checkIsNotPositive(int input) throws NotPositiveNumberException {
@@ -21,10 +25,10 @@ public class InputValidator {
             isInRange(input, leftBound, rightBound);
         } catch (NotPositiveNumberException e) {
             isValidated = 1;
-            //System.out.println("This is not positive type number. Please, write positive number");
+
         } catch (OutOfRangeException e) {
             isValidated = 2;
-            //System.out.println("This number is out of range. Write number in range");
+
         }
 
 
